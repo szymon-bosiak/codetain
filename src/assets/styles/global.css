@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: sans-serif;
+  color: var(--white);
+}
+
+body {
+  background-color: var(--dark-secondary);
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+:root {
+  /* Dimensions */
+  --content-width: 1000px;
+  --nav-height: 4.5rem;
+
+  /* Colors */
+  --black: #000000;
+  --white: #ffffff;
+  --dark: #181818;
+  --dark-secondary: #1f1f1f;
+  --accent: #2db2d3;
+}

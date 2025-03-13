@@ -1,0 +1,52 @@
+.home {
+  width: 100%;
+  height: calc(100vh - var(--nav-height));
+  background: url(../../assets/images/hero.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.home_content {
+  width: 100%;
+  max-width: var(--content-width);
+  height: 100%;
+  padding: 0 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.home_content-heading h1 {
+  padding-top: 10rem;
+  font-family: "Suranna", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 96px;
+}
+
+.home_content-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.home_content-column h2 {
+  height: 5rem;
+  padding-bottom: 1rem;
+  font-size: 22px;
+  text-align: center;
+}
+
+.home_content-column p {
+  padding-bottom: .5rem;
+  font-style: italic;
+  font-size: 16px;
+  text-align: justify;
+}

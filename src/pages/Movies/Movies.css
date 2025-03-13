@@ -38,20 +38,6 @@
   padding: 2rem 1rem;
 }
 
-.movies_contaier-list li {
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid var(--white);
-
-}
-
-.movies_contaier-list li a {
-  text-decoration: none;
-}
-
 .movies_contaier-list li a h2 {
   font-family: "Suranna", serif;
   font-weight: 400;
@@ -59,48 +45,76 @@
   font-size: 30px;
 }
 
-.movies_container-error{
+.movies_container-error {
   margin-top: 2rem;
 }
 
-.movies-list {
-  list-style: none;
-  padding: 0;
-}
-
-.movie-item {
-  position: relative;
-  margin: 20px 0;
-  padding: 20px;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.movie-item::before,
-.movie-item::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width 0.3s ease;
-}
-
-.movie-item::before {
-  top: 0;
-  left: 0;
-}
-
-.movie-item::after {
-  bottom: 0;
-  right: 0;
-}
-
-.movie-item:hover {
-  border-color: var(--accent);
-}
-
-.movie-item:hover::before,
-.movie-item:hover::after {
+.movies-list a {
   width: 100%;
+  padding: 0 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  background-color: var(--dark-secondary);
+}
+
+.movies-list a {
+  transition: 0.3s;
+}
+
+.movies-list span {
+  transition: 0.3s;
+}
+
+.movies-list a:hover {
+  scale: 1.02;
+}
+
+.movies-list a::before,
+.movies-list a::after,
+.movies-list span::before,
+.movies-list span::after {
+  content: "";
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.movies-list a::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.movies-list a::after {
+  top: -2px;
+  right: -2px;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.movies-list span::before {
+  bottom: -2px;
+  left: -2px;
+  border-bottom: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.movies-list span::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.movies-list a:hover::before,
+.movies-list a:hover::after,
+.movies-list a:hover span::before,
+.movies-list a:hover span::after {
+  width: calc(655px / 2);
+  height: calc(50px / 2);
 }

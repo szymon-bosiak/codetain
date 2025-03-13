@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "./Movies.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import Loading from "../../components/Loading/Loading"
 
 interface SwapiFilmsResponse {
   count: number
@@ -78,11 +79,12 @@ function Movies() {
 
                 const movieId = movie.url.match(/\/films\/(\d+)\//)[1]
                 return (
-                  <li key={movie.episode_id} className="movie-item">
+                  <li key={movie.episode_id}>
                     <Link to={`/movie/${movieId}`}>
+                      <span />
                       <h2>{`${movie.title} (Episode ${movie.episode_id})`}</h2>
+                      <p>Release Date: {movie.release_date}</p>
                     </Link>
-                    <p>Release Date: {movie.release_date}</p>
                   </li>
                 )
               })}
@@ -90,7 +92,7 @@ function Movies() {
           )}
         </div>
 
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Loading />}
         {error && <p>{error}</p>}
       </div>
     </div>

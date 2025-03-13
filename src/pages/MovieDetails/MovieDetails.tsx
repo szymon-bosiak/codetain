@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import "./MovieDetails.css"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import axios from "axios"
+import { MdArrowBack } from "react-icons/md"
+import Loading from "../../components/Loading/Loading"
 
 interface MovieDetailsType {
   title: string
@@ -50,26 +52,34 @@ function MovieDetails() {
     }
   }, [movieId])
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>
-  }
-
-  if (!movieDetails) {
-    return <div>Movie not found.</div>
-  }
-
   return (
     <div className="movie_details">
-      <h2>{movieDetails.title}</h2>
-      <p>{movieDetails.episode_id}</p>
-      <p>Director: {movieDetails.director}</p>
-      <p>Producer: {movieDetails.producer}</p>
-      <p>Release Date: {movieDetails.release_date}</p>
-      <p>Opening Crawl: {movieDetails.opening_crawl}</p>
+      <div className="movie_details_container">
+        <div className="movie_details_container-button">
+          <button>
+            <Link to="/movies">
+              <MdArrowBack />
+            </Link>
+          </button>
+        </div>
+
+        <div className="movie_details_container-content">
+          {movieDetails && (
+            <>
+              <h2>{movieDetails.title}</h2>
+              <div className="movie_details_container-content-details">
+                <p>Director: {movieDetails.director}</p>
+                <p>Producer: {movieDetails.producer}</p>
+                <p>Release Date: {movieDetails.release_date}</p>
+                <p>Opening Crawl: {movieDetails.opening_crawl}</p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {isLoading && <Loading />}
+      {error && <p>{error}</p>}
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { MdArrowBack } from "react-icons/md"
 import Loading from "../../components/Loading/Loading"
 import { motion } from "framer-motion"
 
-interface MovieDetailsType {
+interface MovieDetails {
   title: string
   episode_id: number
   opening_crawl: string
@@ -23,16 +23,14 @@ interface MovieDetailsType {
   url: string
 }
 
-const fadeInSide = {
+const fadeInRight = {
   hidden: { opacity: 0, x: 20 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 }
 
 function MovieDetails() {
   const { movieId } = useParams<{ movieId: string }>()
-  const [movieDetails, setMovieDetails] = useState<MovieDetailsType | null>(
-    null
-  )
+  const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -43,8 +41,12 @@ function MovieDetails() {
           `https://swapi.dev/api/films/${movieId}`
         )
         setMovieDetails(response.data)
-      } catch (error: any) {
-        setError(error.message)
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          setError(error.message)
+        } else {
+          setError("An unknown error occurred")
+        }
       } finally {
         setIsLoading(false)
       }
@@ -65,7 +67,7 @@ function MovieDetails() {
           className="movie__button"
           initial="hidden"
           animate="visible"
-          variants={fadeInSide}
+          variants={fadeInRight}
         >
           <button>
             <Link to="/movies">
@@ -74,9 +76,13 @@ function MovieDetails() {
           </button>
         </motion.div>
 
-        <div className="movie__content">
-          {movieDetails && (
-            <>
+        {error ? (
+          <p className="movie__error">{error}</p>
+        ) : isLoading ? (
+          <Loading />
+        ) : (
+          movieDetails && (
+            <div className="movie__content">
               <h2>{movieDetails.title}</h2>
               <div className="movie__content-details">
                 <p>Director: {movieDetails.director}</p>
@@ -84,13 +90,10 @@ function MovieDetails() {
                 <p>Release Date: {movieDetails.release_date}</p>
                 <p>Opening Crawl: {movieDetails.opening_crawl}</p>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          )
+        )}
       </div>
-
-      {isLoading && <Loading />}
-      {error && <p>{error}</p>}
     </div>
   )
 }

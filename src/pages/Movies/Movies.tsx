@@ -31,7 +31,7 @@ interface SwapiMovie {
 
 const fadeInLeft = {
   hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: .6 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 }
 
 function Movies() {
@@ -47,8 +47,12 @@ function Movies() {
           "https://swapi.dev/api/films"
         )
         setMovies(response.data.results)
-      } catch (error: any) {
-        setError(error.message)
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          setError(error.message)
+        } else {
+          setError("An unknown error occurred")
+        }
       } finally {
         setIsLoading(false)
       }
@@ -76,30 +80,33 @@ function Movies() {
           />
         </div>
 
-        <div className="movies__results">
-          {filteredMovies.length === 0 && !isLoading && !error ? (
-            <p className="movies__list-error">No movies found.</p>
-          ) : (
-            <ul className="movies__results-list">
-              {filteredMovies.map((movie: any) => {
-                // Extract movie ID from API URL because episode_id does not match the correct API endpoint
-                const movieId = movie.url.match(/\/films\/(\d+)\//)[1]
-                return (
-                  <li key={movie.episode_id}>
-                    <Link to={`/movie/${movieId}`}>
-                      <span />
-                      <h2>{`${movie.title} (Episode ${movie.episode_id})`}</h2>
-                      <p>Release Date: {movie.release_date}</p>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-        </div>
-
-        {isLoading && <Loading />}
-        {error && <p>{error}</p>}
+        {error ? (
+          <p className="movie__error">{error}</p>
+        ) : isLoading ? (
+          <Loading />
+        ) : (
+          <div className="movies__results">
+            {filteredMovies.length === 0 && !isLoading && !error ? (
+              <p className="movies__error">No movies found.</p>
+            ) : (
+              <ul className="movies__results-list">
+                {filteredMovies.map((movie: any) => {
+                  // Extract movie ID from API URL because episode_id does not match the correct API endpoint
+                  const movieId = movie.url.match(/\/films\/(\d+)\//)[1]
+                  return (
+                    <li key={movie.episode_id}>
+                      <Link to={`/movie/${movieId}`}>
+                        <span />
+                        <h2>{`${movie.title} (Episode ${movie.episode_id})`}</h2>
+                        <p>Release Date: {movie.release_date}</p>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )

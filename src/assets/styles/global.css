@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: var(--dark-secondary);
+  background-color: var(--dark);
 }
 
 ::selection {

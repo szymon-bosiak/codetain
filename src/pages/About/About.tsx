@@ -23,16 +23,6 @@ function About() {
     desc: string
   }
 
-  const contentVariants = {
-    initial: { opacity: 0, x: -50 },
-    animate: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
-    exit: { opacity: 0, transition: { duration: 0.3 } },
-  }
-
   const gallery = [
     {
       title: "Workout",
@@ -50,6 +40,16 @@ function About() {
       desc: "Gaming offers an immersive escape, a chance to explore intricate worlds and solve complex challenges. It's a space for strategic thinking and collaborative problem-solving, fostering a different kind of creativity.",
     },
   ]
+
+  const contentVariants = {
+    initial: { opacity: 0, x: -50 },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+    exit: { opacity: 0, transition: { duration: 0.3 } },
+  }
 
   const technologies = [
     {

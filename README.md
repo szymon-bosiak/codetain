@@ -26,8 +26,8 @@ This project is a personal website built with React, TypeScript, and Vite. It in
 1.  **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
-    cd <project-folder>
+    git clone https://github.com/szymon-bosiak/codetain
+    cd codetain
     ```
 
 2.  **Install dependencies:**

@@ -1,4 +1,4 @@
-import "./Loading.css"
+import "./loading.css"
 import { GiDeathStar } from "react-icons/gi"
 import { motion } from "framer-motion"
 

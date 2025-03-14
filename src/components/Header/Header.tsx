@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom"
-import "./Header.css"
+import "./header.css"
 
 function Header() {
   return (
     <div>
       <div className="header">
-        <div className="header_container">
-          <h1 className="header_heading">
-            Szymon<i className="header_heading-dot">.</i>
+        <div className="header__container">
+          <h1 className="header__heading">
+            Szymon<i className="header__heading-dot">.</i>
           </h1>
-          <nav className="header_nav">
+          <nav className="header__nav">
             <ul>
               <li>
                 <Link to="/">Home</Link>

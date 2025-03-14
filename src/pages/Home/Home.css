@@ -1,6 +1,6 @@
 .home {
   width: 100%;
-  height: calc(100vh - var(--nav-height));
+  min-height: calc(100vh - var(--nav-height));
   background: url(../../assets/images/hero.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -11,11 +11,11 @@
   justify-content: center;
 }
 
-.home_content {
+.home__content {
   width: 100%;
   max-width: var(--content-width);
-  height: 100%;
-  padding: 0 8rem;
+  height: auto;
+  padding: 0 6.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,30 +23,58 @@
   gap: 3rem;
 }
 
-.home_content-heading h1 {
+.home__heading h1 {
   padding-top: 10rem;
   font-family: "Suranna", serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 96px;
+  font-size: clamp(52px, 25vw, 96px);
 }
 
-.home_content-columns {
+.home__columns {
+  padding-bottom: 3rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
-.home_content-column h2 {
+.home__column h2 {
   height: 5rem;
   padding-bottom: 1rem;
   font-size: 22px;
   text-align: center;
 }
 
-.home_content-column p {
-  padding-bottom: .5rem;
+.home__column p {
+  padding-bottom: 0.5rem;
   font-style: italic;
   font-size: 16px;
   text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+  .home__content {
+    padding: 0 2rem;
+  }
+
+  .home__heading h1 {
+    width: 100%;
+    padding-bottom: 2rem;
+    line-height: 5rem;
+    text-align: center;
+  }
+
+  .home__columns {
+    grid-template-columns: none;
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .home__column {
+    max-width: 300px;
+  }
+
+  .home__column h2 {
+    height: auto;
+    text-align: left;
+  }
 }

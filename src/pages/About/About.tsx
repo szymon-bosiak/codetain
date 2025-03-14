@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "./About.css"
+import "./about.css"
 import gaming from "../../assets/images/gaming.jpg"
 import art from "../../assets/images/building.jpg"
 import workout from "../../assets/images/workout.jpg"
@@ -24,13 +24,13 @@ function About() {
   }
 
   const contentVariants = {
-    initial: { opacity: 0, x: -50 }, // Start 50px to the left
+    initial: { opacity: 0, x: -50 },
     animate: {
       opacity: 1,
       x: 0,
       transition: { duration: 0.4, ease: "easeOut" },
     },
-    exit: { opacity: 0, transition: { duration: 0.3 } }, // Only fades out
+    exit: { opacity: 0, transition: { duration: 0.3 } },
   }
 
   const gallery = [
@@ -113,12 +113,12 @@ function About() {
   }
   return (
     <div className="about">
-      <div className="about_content">
-        <div className="about_content-heading">
+      <div className="about__content">
+        <div className="about__heading">
           <h1>Szymon Bosiak</h1>
         </div>
 
-        <div className="about_content-desc">
+        <div className="about__desc">
           <p>
             I am a developer with a passion for creating aesthetically pleasing
             applications, where I can combine my interest in design and art with
@@ -128,35 +128,35 @@ function About() {
           </p>
         </div>
 
-        <div className="about_content-gallery">
+        <div className="about__gallery">
           <AnimatePresence mode="wait">
             <motion.div
               key={clickedImg.title}
-              className="about_content-selected"
+              className="about__gallery-selected"
               variants={contentVariants}
               initial="initial"
               animate="animate"
               exit="exit"
             >
               <img
-                className="about_content-selected-img"
+                className="about__gallery-selected-img"
                 src={clickedImg.img}
                 alt={clickedImg.title}
               />
-              <div className="about_content-selected-desc">
+              <div className="about__gallery-selected-desc">
                 <h2>{clickedImg.title}</h2>
                 <p>{clickedImg.desc}</p>
               </div>
             </motion.div>
           </AnimatePresence>
-          <div className="about_content-selection">
+          <div className="about__selection">
             {gallery.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleImgClick(item)}
-                className={`about_content-selection-item ${
+                className={`about__selection-item ${
                   clickedImg.title === item.title
-                    ? "about_content-selection-item--active"
+                    ? "about__selection-item--active"
                     : ""
                 }`}
               >
@@ -166,11 +166,11 @@ function About() {
           </div>
         </div>
 
-        <div className="about_content-list">
+        <div className="about__list">
           <h2>Technologies that I am familiar with:</h2>
-          <div className="about_content-list-items">
+          <div className="about__list-items">
             {technologies.map((tech, index) => (
-              <div key={index} className="about_content-list-item">
+              <div key={index} className="about__list-item">
                 {tech.icon}
                 <p>{tech.title}</p>
               </div>

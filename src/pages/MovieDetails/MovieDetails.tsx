@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import "./MovieDetails.css"
+import "./movieDetails.css"
 import { Link, useParams } from "react-router-dom"
 import axios from "axios"
 import { MdArrowBack } from "react-icons/md"
 import Loading from "../../components/Loading/Loading"
+import { motion } from "framer-motion"
 
 interface MovieDetailsType {
   title: string
@@ -20,6 +21,11 @@ interface MovieDetailsType {
   created: string
   edited: string
   url: string
+}
+
+const fadeInSide = {
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 }
 
 function MovieDetails() {
@@ -53,21 +59,26 @@ function MovieDetails() {
   }, [movieId])
 
   return (
-    <div className="movie_details">
-      <div className="movie_details_container">
-        <div className="movie_details_container-button">
+    <div className="movie">
+      <div className="movie__container">
+        <motion.div
+          className="movie__button"
+          initial="hidden"
+          animate="visible"
+          variants={fadeInSide}
+        >
           <button>
             <Link to="/movies">
               <MdArrowBack />
             </Link>
           </button>
-        </div>
+        </motion.div>
 
-        <div className="movie_details_container-content">
+        <div className="movie__content">
           {movieDetails && (
             <>
               <h2>{movieDetails.title}</h2>
-              <div className="movie_details_container-content-details">
+              <div className="movie__content-details">
                 <p>Director: {movieDetails.director}</p>
                 <p>Producer: {movieDetails.producer}</p>
                 <p>Release Date: {movieDetails.release_date}</p>

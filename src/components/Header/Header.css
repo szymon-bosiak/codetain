@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-.header_container {
+.header__container {
   width: 100%;
   max-width: 1600px;
   height: var(--nav-height);
@@ -13,27 +13,27 @@
   align-items: center;
 }
 
-.header_heading {
+.header__heading {
   font-family: "Suranna", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.header_heading-dot {
+.header__heading-dot {
   color: var(--accent);
 }
 
-.header_nav ul {
+.header__nav ul {
   display: flex;
   flex-direction: row;
   gap: 2rem;
 }
 
-.header_nav li {
+.header__nav li {
   list-style: none;
 }
 
-.header_nav li a {
+.header__nav li a {
   width: 100%;
   padding: 0 0.2rem;
   position: relative;
@@ -42,7 +42,7 @@
   transition: color 0.3s;
 }
 
-.header_nav li a::before {
+.header__nav li a::before {
   width: 100%;
   height: 0.3rem;
   position: absolute;
@@ -53,12 +53,12 @@
   z-index: -1;
 }
 
-.header_nav li a:hover::before {
+.header__nav li a:hover::before {
   height: 100%;
   bottom: 0;
 }
 
-.header_nav li a::before {
+.header__nav li a::before {
   width: 100%;
   height: 0.3rem;
   position: absolute;
@@ -68,4 +68,22 @@
   background-color: var(--accent);
   z-index: -1;
   transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .header__container {
+    padding: 0 2rem;
+  }
+
+  .header__heading {
+    font-size: 26px;
+  }
+
+  .header__nav ul {
+    gap: 1rem;
+  }
+
+  .header__nav li a {
+    font-size: 16px;
+  }
 }

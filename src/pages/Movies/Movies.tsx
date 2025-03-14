@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
-import "./Movies.css"
+import "./movies.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import Loading from "../../components/Loading/Loading"
+import { motion } from "framer-motion"
 
-interface SwapiFilmsResponse {
+interface SwapiMoviesResponse {
   count: number
   next: string | null
   previous: string | null
-  results: SwapiFilm[]
+  results: SwapiMovie[]
 }
 
-interface SwapiFilm {
+interface SwapiMovie {
   title: string
   episode_id: number
   opening_crawl: string
@@ -28,8 +29,13 @@ interface SwapiFilm {
   url: string
 }
 
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: .6 } },
+}
+
 function Movies() {
-  const [movies, setMovies] = useState<SwapiFilm[]>([])
+  const [movies, setMovies] = useState<SwapiMovie[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
@@ -37,7 +43,7 @@ function Movies() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get<SwapiFilmsResponse>(
+        const response = await axios.get<SwapiMoviesResponse>(
           "https://swapi.dev/api/films"
         )
         setMovies(response.data.results)
@@ -50,33 +56,33 @@ function Movies() {
     fetchMovies()
   }, [])
 
-  const filteredMovies = movies.filter((movie: SwapiFilm) =>
+  const filteredMovies = movies.filter((movie: SwapiMovie) =>
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
     <div className="movies">
-      <div className="movies_container">
-        <h1>Star Wars Movies</h1>
+      <div className="movies__container">
+        <motion.h1 initial="hidden" animate="visible" variants={fadeInLeft}>
+          Star Wars Movies
+        </motion.h1>
 
-        <div className="moveis_container-search">
+        <div className="moveis__search">
           <input
             type="text"
             placeholder="Search movies..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="movies-search"
           />
         </div>
 
-        <div className="movies_contaier-list">
+        <div className="movies__results">
           {filteredMovies.length === 0 && !isLoading && !error ? (
-            <p className="movies_container-error">No movies found.</p>
+            <p className="movies__list-error">No movies found.</p>
           ) : (
-            <ul className="movies-list">
+            <ul className="movies__results-list">
               {filteredMovies.map((movie: any) => {
                 // Extract movie ID from API URL because episode_id does not match the correct API endpoint
-
                 const movieId = movie.url.match(/\/films\/(\d+)\//)[1]
                 return (
                   <li key={movie.episode_id}>

@@ -81,7 +81,7 @@ function Movies() {
         </div>
 
         {error ? (
-          <p className="movie__error">{error}</p>
+          <p className="movies__error">{error}</p>
         ) : isLoading ? (
           <Loading />
         ) : (

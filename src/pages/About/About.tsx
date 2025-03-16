@@ -114,21 +114,21 @@ function About() {
   return (
     <div className="about">
       <div className="about__content">
-        <div className="about__heading">
+        <header className="about__heading">
           <h1>Szymon Bosiak</h1>
-        </div>
+        </header>
 
-        <div className="about__desc">
+        <section className="about__desc">
           <p>
             I am a developer with a passion for creating aesthetically pleasing
             applications, where I can combine my interest in design and art with
             attention to technical details. I am characterized by good
-            communication skills, commitment, attention to detail and a desire
+            communication skills, commitment, attention to detail, and a desire
             to improve my skills.
           </p>
-        </div>
+        </section>
 
-        <div className="about__gallery">
+        <section className="about__gallery">
           <AnimatePresence mode="wait">
             <motion.div
               key={clickedImg.title}
@@ -164,9 +164,9 @@ function About() {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="about__list">
+        <section className="about__list">
           <h2>Technologies that I am familiar with:</h2>
           <div className="about__list-items">
             {technologies.map((tech, index) => (
@@ -176,7 +176,7 @@ function About() {
               </div>
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   )

@@ -46,10 +46,12 @@
 }
 
 .movie__content h2 {
+  padding: 2rem 0 1.75rem 0;
   font-family: "Suranna", serif;
   font-weight: 400;
   font-style: normal;
   font-size: 48px;
+  line-height: 3rem;
 }
 
 .movie__content-details {

@@ -44,16 +44,16 @@ function Home() {
   return (
     <div className="home">
       <div className="home__content">
-        <motion.div
+        <motion.header
           className="home__heading"
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
         >
           <h1>Szymon Bosiak</h1>
-        </motion.div>
+        </motion.header>
 
-        <motion.div
+        <motion.section
           className="home__columns"
           initial="hidden"
           animate="visible"
@@ -73,7 +73,7 @@ function Home() {
               ))}
             </motion.div>
           ))}
-        </motion.div>
+        </motion.section>
       </div>
     </div>
   )

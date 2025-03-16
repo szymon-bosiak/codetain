@@ -90,9 +90,10 @@ function Movies() {
               <p className="movies__error">No movies found.</p>
             ) : (
               <ul className="movies__results-list">
-                {filteredMovies.map((movie: any) => {
+                {filteredMovies.map((movie: SwapiMovie) => {
                   // Extract movie ID from API URL because episode_id does not match the correct API endpoint
-                  const movieId = movie.url.match(/\/films\/(\d+)\//)[1]
+                  const match = movie.url.match(/\/films\/(\d+)\//)
+                  const movieId = match?.[1] ?? "unknown"
                   return (
                     <li key={movie.episode_id}>
                       <Link to={`/movie/${movieId}`}>

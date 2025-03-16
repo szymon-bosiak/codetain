@@ -84,12 +84,12 @@ function MovieDetails() {
           movieDetails && (
             <div className="movie__content">
               <h2>{movieDetails.title}</h2>
-              <div className="movie__content-details">
+              <section className="movie__content-details">
                 <p>Director: {movieDetails.director}</p>
                 <p>Producer: {movieDetails.producer}</p>
                 <p>Release Date: {movieDetails.release_date}</p>
                 <p>Opening Crawl: {movieDetails.opening_crawl}</p>
-              </div>
+              </section>
             </div>
           )
         )}

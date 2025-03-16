@@ -6,9 +6,9 @@
 
 .header__container {
   width: 100%;
-  max-width: 1600px;
+  max-width: var(--content-width);
   height: var(--nav-height);
-  padding: 0 8rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,10 +75,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .header__container {
-    padding: 0 2rem;
-  }
-
   .header__heading {
     font-size: 26px;
   }
